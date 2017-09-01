@@ -1,0 +1,32 @@
+# Conda environment specification. The dependencies defined in this file will
+# be automatically provisioned for managed runs. These include runs against
+# the localdocker, remotedocker, and cluster compute targets.
+
+# Note that this file is NOT used to automatically manage dependencies for the
+# local compute target. To provision these dependencies locally, run:
+# conda env update --file conda_dependencies.yml
+
+# Details about the Conda environment file format:
+# https://conda.io/docs/using/envs.html#create-environment-file-by-hand
+
+# For managing Spark packages and configuration, see spark_dependencies.yml.
+
+name: project_environment
+dependencies:
+  # The python interpreter version.
+  # Currently Azure ML Workbench only supports 3.5.2.
+  - python=3.5.2
+
+  # Required for Jupyter Notebooks.
+  - ipykernel=4.6.1
+
+  - pip:
+    # The API for Azure Machine Learning Model Management Service.
+    # Details: https://github.com/Azure/Machine-Learning-Operationalization
+    - azure-ml-api-sdk==0.1.0a6
+
+    # Helper utilities for calculating dataprofiles from Pandas DataFrames.
+    - https://runhistorycurrentwestus.blob.core.windows.net/drops/latest/wheels/azureml.pyrecipes.dataframe-1.0.12-py3-none-any.whl?st=2017-06-02T18%3A57%3A00Z&se=2018-06-03T18%3A57%3A00Z&sp=rl&sv=2015-12-11&sr=c&sig=kSL918P3XS7799%2B8Fv6aag4G%2F2W2y32dCk%2BYOAbfXJg%3D
+
+    # Helper utilities for dealing with Azure ML Workbench Assets.
+    - https://runhistorycurrentwestus.blob.core.windows.net/drops/latest/wheels/azureml.assets-1.0.0-py3-none-any.whl?st=2017-06-02T18%3A57%3A00Z&se=2018-06-03T18%3A57%3A00Z&sp=rl&sv=2015-12-11&sr=c&sig=kSL918P3XS7799%2B8Fv6aag4G%2F2W2y32dCk%2BYOAbfXJg%3D

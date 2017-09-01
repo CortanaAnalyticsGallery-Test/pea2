@@ -1,0 +1,18 @@
+# Defines a localdocker compute target that uses a local Docker container.
+type: "localdocker"
+
+# The base image for the Docker container. This is used to provision Spark and
+# the Conda package manager. Supported based images are microsoft/mmlspark:plus
+# variants. The default 0.7 version includes Spark 2.1.1.
+baseDockerImage: "microsoft/mmlspark:plus-0.7.dev7_2.gcfbc920"
+
+# Enabling Docker shared volumes will increase execution performance and enable
+# automatic mounting of the shared directory, but the shared volume feature of
+# Docker isn't stable on Windows yet and so it's not used by default.
+sharedVolumes: false
+
+# The $AZUREML_NATIVE_SHARE_DIRECTORY environment variable inside runs points
+# at a persistent directory that is shared between all runs of the same project
+# on the same target. This specifies the base path for those directories.
+# Note that this is not available if sharedVolumes is false.
+nativeSharedDirectory: "~/.azureml/share/"
